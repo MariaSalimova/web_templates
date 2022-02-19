@@ -17,6 +17,14 @@ def training(prof):
     return render_template('trainig.html', title='Научные симуляторы',
                            image=url_for('static', filename='pictures/sci.jpg'))
 
+@app.route('/list_prof/<list>')
+def occupations_list(list):
+    occupations = ['инженер-исследователь', 'пилот', 'строитель', 'экзобиолог', 'врач', 'инженер по терраформированию',
+                   'климатолог', 'специалист по радиационной защите', 'астрогеолог', 'гляциолог',
+                   'инженер жизнеобеспечения', 'метеоролог', 'оператор марсохода', 'киберинженер', 'штурман',
+                   'пилот дронов']
+    return render_template('occupations.html', title='Список профессий', list_type=list, occupations=occupations)
+
 
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
