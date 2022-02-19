@@ -17,6 +17,7 @@ def training(prof):
     return render_template('trainig.html', title='Научные симуляторы',
                            image=url_for('static', filename='pictures/sci.jpg'))
 
+
 @app.route('/list_prof/<list>')
 def occupations_list(list):
     occupations = ['инженер-исследователь', 'пилот', 'строитель', 'экзобиолог', 'врач', 'инженер по терраформированию',
@@ -24,6 +25,12 @@ def occupations_list(list):
                    'инженер жизнеобеспечения', 'метеоролог', 'оператор марсохода', 'киберинженер', 'штурман',
                    'пилот дронов']
     return render_template('occupations.html', title='Список профессий', list_type=list, occupations=occupations)
+
+
+@app.route('/answer')
+def form_answer():
+    data = {}
+    return render_template('answer.html', title='Анкета', form=data)
 
 
 if __name__ == '__main__':
