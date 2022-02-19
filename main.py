@@ -1,6 +1,8 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, redirect
+from systems_acsess_form import EmergencyForm
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 
 @app.route('/<title>')
@@ -31,6 +33,14 @@ def occupations_list(list):
 def form_answer():
     data = {}
     return render_template('answer.html', title='Анкета', form=data)
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = EmergencyForm()
+    if form.validate_on_submit():
+        return redirect('/success')
+    return render_template('emergency_login.html', title='Аварийный доступ', form=form)
 
 
 if __name__ == '__main__':
